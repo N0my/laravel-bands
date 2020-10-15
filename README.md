@@ -1,4 +1,4 @@
-## Cvičenie 2 PWT
+## Cvičenie 2 PWT - Juraj Vanko
 
 Vytvorenie jednoduchých CRUD operácii vo Frameworku Laravel.
 Vybral som si tému hudobných skupín.
