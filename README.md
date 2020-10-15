@@ -1,4 +1,12 @@
-## Cvičenie 2
+## Cvičenie 2 PWT
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Vytvorenie jednoduchých CRUD operácii vo Frameworku Laravel.
+Vybral som si tému hudobných skupín.
+
+Každý skupina obsahuje:
+<ul>
+    <li>Názov</li>
+    <li>Počet členov</li>
+    <li>Druh hudobného žánru</li>
+    <ul>
 
