@@ -9,31 +9,47 @@ use Illuminate\Http\Request;
 class BandController extends Controller
 {
    public function showAction($id){
-  $band= Band::find($id);
-  echo $band->nazov."<br>";
-  echo $band->pocet_clenov."<br>";
-  echo $band->zaner."<br>";
+    $band= Band::find($id);
+
+    return view('updateBand', ['band' =>$band]);
    }
-    public function insertAction(){
+   public function showInsertAction(){
+       return view('addband');
+   }
+    public function insertAction(Request $request){
     $band = new Band();
-    $band->nazov = "Tublatanka";
-    $band->pocet_clenov = 5;
-    $band->zaner = "Asi rock";
+    $band ->nazov = $request->input('nazov');
+    $band ->pocet_clenov = $request->input('pocet_clenov');
+    $band ->zaner = $request->input('zaner');
     $band->save();
 
+    return response()->view('addband');
     }
-    public function updateAction($id){
-    $band = Band::where("id","=",$id)->first();
-    $band->update(["pocet_clenov" => mt_rand(1,10)]);
+    public function updateAction($id, Request $request){
+    $band = Band::find($id);
+        $band ->nazov = $request->input('nazov');
+        $band ->pocet_clenov = $request->input('pocet_clenov');
+        $band ->zaner = $request->input('zaner');
+
+        $band->update();
+        return redirect()->action('BandController@showAllAction');
     }
     public function deleteAction($id){
     $band = Band::find($id);
     $band->delete();
+        return redirect()->action('BandController@showAllAction');
     }
     public function showAllAction(){
        $bands = Band::all();
-       foreach ($bands as $band){
-           echo $band->nazov." ".$band->pocet_clenov." ".$band->zaner."<br>";
-       }
+       $pole = json_encode($bands);
+
+         return view('showAllBands', ['bands' => $bands]);
+    }
+    public function showFiltered(Request $request){
+       $search = $request->get('q');
+        $bands = Band::where('nazov','like','%'.$search.'%')->get();
+        $pole = json_encode($bands);
+        echo $pole;
+          return view('showAllBands', ['bands' => $bands]);
     }
 }

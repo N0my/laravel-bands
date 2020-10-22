@@ -19,12 +19,16 @@ Route::get('/show/{id}', [
    'as' => 'show', 'uses' => 'BandController@showAction'
 ]);
 
-Route::get('/insert', [
+Route::get('/insert-form', [
+    'as' => 'insert-form', 'uses' => 'BandController@showInsertAction'
+]);
+
+Route::post('/insert', [
     'as' => 'insert', 'uses' => 'BandController@insertAction'
 ]);
 
 
-Route::get('/update/{id}', [
+Route::post('/update/{id}', [
     'as' => 'update', 'uses' => 'BandController@updateAction'
 ]);
 
@@ -34,4 +38,7 @@ Route::get('/delete/{id}', [
 
 Route::get('/show-all', [
     'as' => 'show-all', 'uses' => 'BandController@showAllAction'
+]);
+Route::get('/show-filtered', [
+    'as' => 'show-filtered', 'uses' => 'BandController@showFiltered'
 ]);
